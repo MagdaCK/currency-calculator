@@ -20,6 +20,8 @@ public class Application{
 
         HashMap<String, Float> dataFromXml= calculatorService.getDataFromXml();
 
+        System.out.println(calculatorService.calculator("CHF", 10.8f));
+
         // Get a set of the entries
         Set set=dataFromXml.entrySet();
         // Get an iterator
