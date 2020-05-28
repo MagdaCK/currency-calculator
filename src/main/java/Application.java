@@ -5,12 +5,10 @@ import pl.atos.exercise.service.CalculatorService;
 import javax.xml.parsers.*;
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Float.parseFloat;
+import static java.lang.System.exit;
 
 public class Application{
 
@@ -18,24 +16,36 @@ public class Application{
 
         CalculatorService calculatorService = new CalculatorService(new File("src/main/resources/eurofxref-daily.xml"));
 
-        HashMap<String, Float> dataFromXml= calculatorService.getDataFromXml();
+//        HashMap<String, Float> dataFromXml= calculatorService.getDataFromXml();
 
-        System.out.println(calculatorService.calculator("CHF", 10.8f));
+        Scanner scanner = new Scanner(System.in);
 
-        // Get a set of the entries
-        Set set=dataFromXml.entrySet();
-        // Get an iterator
-        Iterator i=set.iterator();
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("Welcome to simple currency calculator! You can convert euros to other currencies.");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-        // Display elements
-        while(i.hasNext())
 
-        {
-            Map.Entry me=(Map.Entry) i.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
+        while(true) {
+            System.out.println("Please, provide symbol of the currency that you wish to convert:");
+            String currency = scanner.next().toUpperCase();
+            System.out.println("Please, provide an amount of euro you wish to convert:");
+            String amountString = scanner.next();
+            Float amount = parseFloat(amountString);
+            System.out.println(currency);
+            System.out.println(amount);
+            System.out.println(calculatorService.calculator(currency, amount));
+            System.out.println("Would you like to make anther calculation? y/n");
+            String answer = scanner.next();
+            switch(answer) {
+                case "y":
+                    break;
+                case "n":
+                default:
+                    exit(0);
+            }
         }
-        System.out.println();
+
+
 
 
     }

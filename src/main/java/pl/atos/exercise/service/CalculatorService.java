@@ -51,6 +51,12 @@ public class CalculatorService{
         return dataFromXml;
     }
 
+    /**
+     *
+     * @param currency
+     * @param amountToConvert
+     * @return
+     */
     public Float calculator(String currency, Float amountToConvert) {
         Float rate = dataFromXml.get(currency);
 
