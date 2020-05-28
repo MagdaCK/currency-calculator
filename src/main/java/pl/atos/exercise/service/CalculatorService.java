@@ -66,7 +66,6 @@ public class CalculatorService{
             }
         }
         return dataFromXml;
-
     }
 
     /**
@@ -76,6 +75,7 @@ public class CalculatorService{
      * @return converted euros (to other currency)
      */
     public Float calculator(String currency, Float amountToConvert) {
+
         Float rate = dataFromXml.get(currency);
 
         return amountToConvert * rate;
